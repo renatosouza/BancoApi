@@ -20,8 +20,6 @@ public class Movimentacao {
     private Cliente cliente1;
 
     //necessario se transferencia
-    @ManyToOne
-    @JoinColumn(name = "cliente2_fk")
     private Cliente cliente2;
 
     public Movimentacao(int tipo, double valor, Cliente cliente1, Cliente cliente2){

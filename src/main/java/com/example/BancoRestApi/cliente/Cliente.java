@@ -5,6 +5,7 @@ import com.example.BancoRestApi.movimentacao.Movimentacao;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Cliente {
@@ -35,7 +36,7 @@ public class Cliente {
     private Agencia agencia;
 
     @OneToMany(mappedBy = "cliente")
-    private ArrayList<Movimentacao> movimentacoes;
+    private List<Movimentacao> movimentacoes;
 
     public Cliente(String conta, String nome, Agencia agencia){
         this.setConta(conta);
@@ -108,7 +109,7 @@ public class Cliente {
         this.agencia = agencia;
     }
 
-    public ArrayList<Movimentacao> getMovimentacoes() {
+    public List<Movimentacao> getMovimentacoes() {
         return movimentacoes;
     }
 

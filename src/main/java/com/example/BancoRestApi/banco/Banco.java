@@ -4,6 +4,7 @@ import com.example.BancoRestApi.agencia.Agencia;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Banco {
@@ -16,7 +17,7 @@ public class Banco {
     private String nome;
 
     @OneToMany(mappedBy = "banco")
-    private ArrayList<Agencia> agencias;
+    private List<Agencia> agencias;
 
     public Banco(String nome) {
         this.setNome(nome);
@@ -38,7 +39,7 @@ public class Banco {
         this.nome = nome;
     }
 
-    public ArrayList<Agencia> getAgencias() {
+    public List<Agencia> getAgencias() {
         return agencias;
     }
 
