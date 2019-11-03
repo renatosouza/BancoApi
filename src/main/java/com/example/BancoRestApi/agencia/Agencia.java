@@ -30,8 +30,10 @@ public class Agencia {
     @OneToMany(mappedBy = "cliente")
     private List<Cliente> clientes;
 
-    public Agencia(String codigo, Banco banco) {
+    public Agencia(String codigo, String endereco, String telefone, Banco banco) {
         this.setCodigo(codigo);
+        this.setEndereco(endereco);
+        this.setTelefone(telefone);
         this.setBanco(banco);
     }
 
