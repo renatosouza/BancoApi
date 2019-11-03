@@ -2,13 +2,25 @@ package com.example.BancoRestApi.banco;
 
 import com.example.BancoRestApi.agencia.Agencia;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 
+@Entity
 public class Banco {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    @Column(length = 50)
     private String nome;
+
+    @OneToMany(mappedBy = "banco")
     private ArrayList<Agencia> agencias;
+
+    public Banco(String nome) {
+        this.setNome(nome);
+    }
 
     public int getId() {
         return id;
@@ -32,6 +44,11 @@ public class Banco {
 
     public void setAgencias(ArrayList<Agencia> agencias) {
         this.agencias = agencias;
+    }
+
+    public void addAgencias(Agencia agencia) {
+        this.agencias.add(agencia);
+        agencia.setBanco(this);
     }
 
 }

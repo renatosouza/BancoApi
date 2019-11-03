@@ -3,19 +3,46 @@ package com.example.BancoRestApi.cliente;
 import com.example.BancoRestApi.agencia.Agencia;
 import com.example.BancoRestApi.movimentacao.Movimentacao;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 
+@Entity
 public class Cliente {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    @Column(length = 10)
     private String conta;
+
+    @Column(length = 50)
     private String nome;
+
+    @Column(length = 100)
     private String endereco;
+
+    @Column(length = 15)
     private String telefone;
+
+    @Column(length = 40)
     private String email;
+
     private double saldo;
+
+    @ManyToOne
+    @JoinColumn(name = "agencia_fk")
     private Agencia agencia;
+
+    @OneToMany(mappedBy = "cliente")
     private ArrayList<Movimentacao> movimentacoes;
+
+    public Cliente(String conta, String nome, Agencia agencia){
+        this.setConta(conta);
+        this.setNome(nome);
+        this.setAgencia(agencia);
+        this.setSaldo(0);
+    }
 
     public int getId() {
         return id;
@@ -87,6 +114,16 @@ public class Cliente {
 
     public void setMovimentacoes(ArrayList<Movimentacao> movimentacoes) {
         this.movimentacoes = movimentacoes;
+    }
+
+    public void addMovimentacoes(Movimentacao movimentacao, boolean clientePrincipal) {
+        this.movimentacoes.add(movimentacao);
+        if(clientePrincipal) {
+            movimentacao.setCliente1(this);
+        } else {
+            movimentacao.setCliente2(this);
+        }
+
     }
 
 }
