@@ -38,11 +38,15 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente")
     private List<Movimentacao> movimentacoes;
 
-    public Cliente(String conta, String nome, Agencia agencia){
+    public Cliente(String conta, String nome, String endereco, String telefone,
+                   String email, double saldo, Agencia agencia){
         this.setConta(conta);
         this.setNome(nome);
-        this.setAgencia(agencia);
-        this.setSaldo(0);
+        this.setEndereco(endereco);
+        this.setTelefone(telefone);
+        this.setEmail(email);
+        this.setSaldo(saldo);
+        agencia.addClientes(this);
     }
 
     public int getId() {

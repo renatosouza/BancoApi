@@ -34,7 +34,7 @@ public class Agencia {
         this.setCodigo(codigo);
         this.setEndereco(endereco);
         this.setTelefone(telefone);
-        this.setBanco(banco);
+        banco.addAgencias(this);
     }
 
     public int getId() {
