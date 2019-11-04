@@ -3,6 +3,7 @@ package com.example.BancoRestApi.movimentacao;
 import com.example.BancoRestApi.cliente.Cliente;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Movimentacao {
@@ -15,6 +16,9 @@ public class Movimentacao {
     private int tipo;
     private double valor;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date horario;
+
     @ManyToOne
     @JoinColumn(name = "cliente1_fk")
     private Cliente cliente1;
@@ -22,11 +26,15 @@ public class Movimentacao {
     //necessario se transferencia
     private Cliente cliente2;
 
-    public Movimentacao(int tipo, double valor, Cliente cliente1, Cliente cliente2){
+    public Movimentacao(int tipo, double valor, Date horario,
+                        Cliente cliente1, Cliente cliente2){
         this.setTipo(tipo);
         this.setValor(valor);
-        this.setCliente1(cliente1);
-        this.setCliente2(cliente2);
+        this.setHorario(horario);
+        cliente1.addMovimentacoes(this, true);
+        if(cliente2 != null) {
+            cliente2.addMovimentacoes(this, false);
+        }
     }
 
     public int getId() {
@@ -55,6 +63,14 @@ public class Movimentacao {
 
     public Cliente getCliente1() {
         return cliente1;
+    }
+
+    public Date getHorario() {
+        return horario;
+    }
+
+    public void setHorario(Date horario) {
+        this.horario = horario;
     }
 
     public void setCliente1(Cliente cliente1) {
