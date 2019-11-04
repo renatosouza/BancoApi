@@ -35,8 +35,10 @@ public class Cliente {
     @JoinColumn(name = "agencia_fk")
     private Agencia agencia;
 
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy = "cliente1")
     private List<Movimentacao> movimentacoes;
+
+    public Cliente() {}
 
     public Cliente(String conta, String nome, String endereco, String telefone,
                    String email, double saldo, Agencia agencia){

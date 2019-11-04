@@ -19,6 +19,8 @@ public class Banco {
     @OneToMany(mappedBy = "banco")
     private List<Agencia> agencias;
 
+    public Banco() {}
+
     public Banco(String nome) {
         this.setNome(nome);
     }

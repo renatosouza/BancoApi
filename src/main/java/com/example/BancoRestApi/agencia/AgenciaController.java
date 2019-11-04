@@ -38,7 +38,11 @@ public class AgenciaController {
         String telefone = body.get("telefone");
         int banco_id = Integer.parseInt(bancoId);
         Banco banco = bancoRepository.findById(banco_id).orElse(null);
-        return agenciaRepository.save(new Agencia(codigo, endereco, telefone, banco));
+        Agencia agencia = new Agencia(codigo, endereco, telefone, banco);
+        System.out.println(agencia);
+        Agencia saved = agenciaRepository.save(agencia);
+        System.out.println(saved);
+        return saved;
     }
 
     @PutMapping("/bancos/{bancoId}/agencias/{id}")

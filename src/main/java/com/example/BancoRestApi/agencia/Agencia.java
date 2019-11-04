@@ -27,8 +27,10 @@ public class Agencia {
     @JoinColumn(name = "banco_fk")
     private Banco banco;
 
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy = "agencia")
     private List<Cliente> clientes;
+
+    public Agencia() {}
 
     public Agencia(String codigo, String endereco, String telefone, Banco banco) {
         this.setCodigo(codigo);
