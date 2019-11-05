@@ -1,7 +1,9 @@
 package com.example.BancoRestApi.banco;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Map;
@@ -34,6 +36,10 @@ public class BancoController {
                         @RequestBody Map<String, String> body) {
         int bancoId = Integer.parseInt(id);
         Banco banco = bancoRepository.findById(bancoId).orElse(null);
+        if(banco == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                                              "Banco não existe!");
+        }
         banco.setNome(body.get("nome"));
         return bancoRepository.save(banco);
     }
@@ -44,4 +50,5 @@ public class BancoController {
         bancoRepository.deleteById(bancoId);
         return true;
     }
+
 }

@@ -1,11 +1,8 @@
 package com.example.BancoRestApi.agencia;
 
 import com.example.BancoRestApi.banco.Banco;
-import com.example.BancoRestApi.cliente.Cliente;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class Agencia {
@@ -27,16 +24,13 @@ public class Agencia {
     @JoinColumn(name = "banco_fk")
     private Banco banco;
 
-    @OneToMany(mappedBy = "agencia")
-    private List<Cliente> clientes;
-
     public Agencia() {}
 
     public Agencia(String codigo, String endereco, String telefone, Banco banco) {
         this.setCodigo(codigo);
         this.setEndereco(endereco);
         this.setTelefone(telefone);
-        banco.addAgencias(this);
+        this.setBanco(banco);
     }
 
     public int getId() {
@@ -77,19 +71,6 @@ public class Agencia {
 
     public void setBanco(Banco banco) {
         this.banco = banco;
-    }
-
-    public List<Cliente> getClientes() {
-        return clientes;
-    }
-
-    public void setClientes(ArrayList<Cliente> clientes) {
-        this.clientes = clientes;
-    }
-
-    public void addClientes(Cliente cliente) {
-        this.clientes.add(cliente);
-        cliente.setAgencia(this);
     }
 
 }

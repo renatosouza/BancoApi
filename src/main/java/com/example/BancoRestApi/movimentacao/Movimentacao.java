@@ -35,10 +35,8 @@ public class Movimentacao {
         this.setTipo(tipo);
         this.setValor(valor);
         this.setHorario(horario);
-        cliente1.addMovimentacoes(this, true);
-        if(cliente2 != null) {
-            cliente2.addMovimentacoes(this, false);
-        }
+        this.setCliente1(cliente1);
+        this.setCliente2(cliente2);
     }
 
     public int getId() {
@@ -65,16 +63,16 @@ public class Movimentacao {
         this.valor = valor;
     }
 
-    public Cliente getCliente1() {
-        return cliente1;
-    }
-
     public Date getHorario() {
         return horario;
     }
 
     public void setHorario(Date horario) {
         this.horario = horario;
+    }
+
+    public Cliente getCliente1() {
+        return cliente1;
     }
 
     public void setCliente1(Cliente cliente1) {

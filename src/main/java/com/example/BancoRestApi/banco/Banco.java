@@ -1,10 +1,6 @@
 package com.example.BancoRestApi.banco;
 
-import com.example.BancoRestApi.agencia.Agencia;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class Banco {
@@ -15,9 +11,6 @@ public class Banco {
 
     @Column(length = 50)
     private String nome;
-
-    @OneToMany(mappedBy = "banco")
-    private List<Agencia> agencias;
 
     public Banco() {}
 
@@ -39,19 +32,6 @@ public class Banco {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public List<Agencia> getAgencias() {
-        return agencias;
-    }
-
-    public void setAgencias(ArrayList<Agencia> agencias) {
-        this.agencias = agencias;
-    }
-
-    public void addAgencias(Agencia agencia) {
-        this.agencias.add(agencia);
-        agencia.setBanco(this);
     }
 
 }
