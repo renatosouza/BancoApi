@@ -21,22 +21,42 @@ public class AgenciaController {
 
     @GetMapping("/bancos/{bancoId}/agencias")
     public List<Agencia> index(@PathVariable Integer bancoId) {
+        Banco banco = bancoRepository.findById(bancoId).orElse(null);
+        if(banco == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+                    "Banco não existe!");
+        }
         return agenciaRepository.findByBanco_id(bancoId);
     }
 
+
     @GetMapping("/bancos/{bancoId}/agencias/{id}")
-    public Agencia show(@PathVariable Integer id) {
-        return agenciaRepository.findById(id).orElse(null);
+    public Agencia show(@PathVariable Integer bancoId,
+                        @PathVariable Integer id) {
+        Banco banco = bancoRepository.findById(bancoId).orElse(null);
+        if(banco == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+                    "Banco não existe!");
+        }
+
+        Agencia agencia = agenciaRepository.findById(id).orElse(null);
+        if(agencia == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+                    "Agência não existe!");
+        }
+        return agencia;
     }
+
 
     @PostMapping("/bancos/{bancoId}/agencias")
     public Agencia create(@PathVariable Integer bancoId,
                           @RequestBody Map<String, String> body) {
         Banco banco = bancoRepository.findById(bancoId).orElse(null);
         if(banco == null) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                                              "Banco não existe!");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+                    "Banco não existe!");
         }
+
         String codigo = body.get("codigo");
         String endereco = body.get("endereco");
         String telefone = body.get("telefone");
@@ -44,23 +64,46 @@ public class AgenciaController {
         return agenciaRepository.save(agencia);
     }
 
+
     @PutMapping("/bancos/{bancoId}/agencias/{id}")
-    public Agencia update(@PathVariable Integer id,
+    public Agencia update(@PathVariable Integer bancoId,
+                          @PathVariable Integer id,
                           @RequestBody Map<String, String> body) {
+        Banco banco = bancoRepository.findById(bancoId).orElse(null);
+        if(banco == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+                    "Banco não existe!");
+        }
+
         Agencia agencia = agenciaRepository.findById(id).orElse(null);
         if(agencia == null){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                                              "Agência não existe!");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+                    "Agência não existe!");
         }
+
         agencia.setCodigo(body.get("codigo"));
         agencia.setEndereco(body.get("endereco"));
         agencia.setTelefone(body.get("telefone"));
         return agenciaRepository.save(agencia);
     }
 
+
     @DeleteMapping("/bancos/{bancoId}/agencias/{id}")
-    public boolean delete(@PathVariable Integer id) {
-        agenciaRepository.deleteById(id);
+    public boolean delete(@PathVariable Integer bancoId,
+                          @PathVariable Integer id) {
+        Banco banco = bancoRepository.findById(bancoId).orElse(null);
+        if(banco == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+                    "Banco não existe!");
+        }
+
+        Agencia agencia = agenciaRepository.findById(id).orElse(null);
+        if(agencia == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+                    "Agência não existe!");
+        }
+
+        agenciaRepository.delete(agencia);
         return true;
     }
 

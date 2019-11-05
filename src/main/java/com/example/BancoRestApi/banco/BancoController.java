@@ -19,11 +19,18 @@ public class BancoController {
         return bancoRepository.findAll();
     }
 
+
     @GetMapping("/bancos/{id}")
-    public Banco show(@PathVariable String id) {
-        int bancoId = Integer.parseInt(id);
-        return bancoRepository.findById(bancoId).orElse(null);
+    public Banco show(@PathVariable Integer id) {
+        Banco banco = bancoRepository.findById(id).orElse(null);
+        if(banco == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+                    "Banco não existe!");
+        }
+
+        return banco;
     }
+
 
     @PostMapping("/bancos")
     public Banco create(@RequestBody Map<String, String> body) {
@@ -31,23 +38,30 @@ public class BancoController {
         return bancoRepository.save(new Banco(nome));
     }
 
+
     @PutMapping("/bancos/{id}")
-    public Banco update(@PathVariable String id,
+    public Banco update(@PathVariable Integer id,
                         @RequestBody Map<String, String> body) {
-        int bancoId = Integer.parseInt(id);
-        Banco banco = bancoRepository.findById(bancoId).orElse(null);
+        Banco banco = bancoRepository.findById(id).orElse(null);
         if(banco == null) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                                              "Banco não existe!");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+                    "Banco não existe!");
         }
+
         banco.setNome(body.get("nome"));
         return bancoRepository.save(banco);
     }
 
+
     @DeleteMapping("bancos/{id}")
-    public boolean delete(@PathVariable String id) {
-        int bancoId = Integer.parseInt(id);
-        bancoRepository.deleteById(bancoId);
+    public boolean delete(@PathVariable Integer id) {
+        Banco banco = bancoRepository.findById(id).orElse(null);
+        if(banco == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+                    "Banco não existe!");
+        }
+
+        bancoRepository.delete(banco);
         return true;
     }
 
