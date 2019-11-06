@@ -7,6 +7,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"conta", "agencia_fk"}))
 public class Cliente {
 
     @Id
