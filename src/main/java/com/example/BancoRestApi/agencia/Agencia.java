@@ -1,6 +1,8 @@
 package com.example.BancoRestApi.agencia;
 
 import com.example.BancoRestApi.banco.Banco;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
@@ -8,7 +10,7 @@ import javax.persistence.*;
 public class Agencia {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(length = 10)
@@ -22,6 +24,7 @@ public class Agencia {
 
     @ManyToOne
     @JoinColumn(name = "banco_fk")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Banco banco;
 
     public Agencia() {}

@@ -1,6 +1,8 @@
 package com.example.BancoRestApi.movimentacao;
 
 import com.example.BancoRestApi.cliente.Cliente;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -9,7 +11,7 @@ import java.util.Date;
 public class Movimentacao {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     //1-saque, 2-deposito ou 3-transferencia
@@ -21,11 +23,13 @@ public class Movimentacao {
 
     @ManyToOne
     @JoinColumn(name = "cliente1_fk")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Cliente cliente1;
 
     //necessario se transferencia
     @ManyToOne
     @JoinColumn(name = "cliente2_fk")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Cliente cliente2;
 
     public Movimentacao() {}
