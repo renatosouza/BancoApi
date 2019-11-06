@@ -39,7 +39,7 @@ public class AgenciaController {
                     "Banco não existe!");
         }
 
-        Agencia agencia = agenciaRepository.findById(id).orElse(null);
+        Agencia agencia = agenciaRepository.findByIdAndBanco_id(id, bancoId);
         if(agencia == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
                     "Agência não existe!");
@@ -75,7 +75,7 @@ public class AgenciaController {
                     "Banco não existe!");
         }
 
-        Agencia agencia = agenciaRepository.findById(id).orElse(null);
+        Agencia agencia = agenciaRepository.findByIdAndBanco_id(id, bancoId);
         if(agencia == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
                     "Agência não existe!");
@@ -97,7 +97,7 @@ public class AgenciaController {
                     "Banco não existe!");
         }
 
-        Agencia agencia = agenciaRepository.findById(id).orElse(null);
+        Agencia agencia = agenciaRepository.findByIdAndBanco_id(id, bancoId);
         if(agencia == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
                     "Agência não existe!");

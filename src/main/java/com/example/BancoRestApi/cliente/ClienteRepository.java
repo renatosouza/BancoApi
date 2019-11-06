@@ -10,4 +10,6 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 
     List<Cliente> findByAgencia_id(Integer agenciaId);
 
+    Cliente findByIdAndAgencia_id(Integer clienteId, Integer agenciaId);
+
 }

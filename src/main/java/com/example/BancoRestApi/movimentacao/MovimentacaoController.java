@@ -40,13 +40,13 @@ public class MovimentacaoController {
                     "Banco não existe!");
         }
 
-        Agencia agencia = agenciaRepository.findById(agenciaId).orElse(null);
+        Agencia agencia = agenciaRepository.findByIdAndBanco_id(agenciaId, bancoId);
         if(agencia == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
                     "Agência não existe!");
         }
 
-        Cliente cliente = clienteRepository.findById(clienteId).orElse(null);
+        Cliente cliente = clienteRepository.findByIdAndAgencia_id(clienteId, agenciaId);
         if(cliente == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
                     "Cliente não existe!");
@@ -67,13 +67,13 @@ public class MovimentacaoController {
                     "Banco não existe!");
         }
 
-        Agencia agencia = agenciaRepository.findById(agenciaId).orElse(null);
+        Agencia agencia = agenciaRepository.findByIdAndBanco_id(agenciaId, bancoId);
         if(agencia == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
                     "Agência não existe!");
         }
 
-        Cliente cliente = clienteRepository.findById(clienteId).orElse(null);
+        Cliente cliente = clienteRepository.findByIdAndAgencia_id(clienteId, agenciaId);
         if(cliente == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
                     "Cliente não existe!");
@@ -107,13 +107,13 @@ public class MovimentacaoController {
                     "Banco não existe!");
         }
 
-        Agencia agencia = agenciaRepository.findById(agenciaId).orElse(null);
+        Agencia agencia = agenciaRepository.findByIdAndBanco_id(agenciaId, bancoId);
         if(agencia == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
                     "Agência não existe!");
         }
 
-        Cliente cliente = clienteRepository.findById(clienteId).orElse(null);
+        Cliente cliente = clienteRepository.findByIdAndAgencia_id(clienteId, agenciaId);
         if(cliente == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
                     "Cliente não existe!");
@@ -141,13 +141,13 @@ public class MovimentacaoController {
                     "Banco não existe!");
         }
 
-        Agencia agencia = agenciaRepository.findById(agenciaId).orElse(null);
+        Agencia agencia = agenciaRepository.findByIdAndBanco_id(agenciaId, bancoId);
         if(agencia == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
                     "Agência não existe!");
         }
 
-        Cliente clientePagador = clienteRepository.findById(clienteId).orElse(null);
+        Cliente clientePagador = clienteRepository.findByIdAndAgencia_id(clienteId, agenciaId);
         if(clientePagador == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
                     "Cliente não existe!");

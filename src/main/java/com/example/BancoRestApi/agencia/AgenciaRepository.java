@@ -10,4 +10,6 @@ public interface AgenciaRepository extends JpaRepository<Agencia, Integer> {
 
     List<Agencia> findByBanco_id(Integer bancoId);
 
+    Agencia findByIdAndBanco_id(Integer agenciaId, Integer bancoId);
+
 }

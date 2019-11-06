@@ -89,7 +89,7 @@ public class MovimentacaoControllerTest extends AbstractTest {
 
     @Test
     public void transferencia() throws Exception {
-        String uri = "/bancos/1/agencias/1/clientes/2/transferencia";
+        String uri = "/bancos/1/agencias/1/clientes/3/transferencia";
 
         String inputJson = "{\"destinatario\":\"4\", \"valor\":\"1000\"}";
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri)

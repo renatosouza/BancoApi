@@ -68,7 +68,7 @@ public class ClienteControllerTest extends AbstractTest {
     @Test
     public void updateCliente() throws Exception {
         String uri = "/bancos/1/agencias/1/clientes/1";
-        Cliente cliente = new Cliente("00000", "Tester", "", "", "", 0, null);
+        Cliente cliente = new Cliente("01100", "Tester", "", "", "", 0, null);
 
         String inputJson = super.mapToJson(cliente);
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.put(uri)

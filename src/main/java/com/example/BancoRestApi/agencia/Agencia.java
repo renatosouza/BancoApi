@@ -1,6 +1,7 @@
 package com.example.BancoRestApi.agencia;
 
 import com.example.BancoRestApi.banco.Banco;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
