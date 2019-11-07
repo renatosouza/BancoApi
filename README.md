@@ -10,7 +10,7 @@ E uma vez dentro da conta, o usuário pode:
 * Fazer um depósito;
 * Fazer uma transferência.
 
-Para mais detalhes da utilização da API, acessar a documentação:
+Para mais detalhes da utilização da API, [acessar a documentação](https://documenter.getpostman.com/view/9384142/SW17SFFC?version=latest).
 
 ## Passos pra fazer o Setup
 
@@ -27,4 +27,4 @@ cd BancoApi
 mvn spring-boot:run
 ```
 
-Pronto! A aplicação pode ser acessada a partir da URL base: `http://localhost:8080`. Acessar a documentação da API para conhecer os endpoints.
+Pronto! A aplicação pode ser acessada a partir da URL base: `http://localhost:8080`. Acessar a [documentação da API](https://documenter.getpostman.com/view/9384142/SW17SFFC?version=latest) para conhecer os endpoints.
